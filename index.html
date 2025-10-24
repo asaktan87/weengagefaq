@@ -26,12 +26,6 @@
       </div>
       <h1 id="brandTitle" class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">WeEngage Assistant</h1>
       <p id="brandSubtitle" class="text-gray-600 dark:text-gray-300">Get instant answers about the WeEngage survey</p>
-
-      <div class="mt-4 flex items-center justify-center gap-2">
-        <button id="darkToggle" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700">
-          Toggle dark mode
-        </button>
-      </div>
     </header>
 
     <!-- Quick Categories -->
@@ -103,15 +97,13 @@
   <script>
   // Ensure all JS runs after the DOM is ready
   window.addEventListener("DOMContentLoaded", () => {
-    // ---------- PERSONALIZATION LAYER ----------
+    // ---------- PERSONALIZATION ----------
     const CONFIG = {
       companyName: "Straumann Group",
       subtitle: "Get instant answers about the WeEngage survey",
       primaryBg: "bg-blue-600",
       primaryRing: "59 130 246",
-      contacts: {
-        hr: "we-engage@straumann.com",
-      },
+      contacts: { hr: "we-engage@straumann.com" },
     };
 
     const CATEGORY_LABELS = {
@@ -121,362 +113,86 @@
       production: "Production Site",
     };
 
-    // ---------- FAQ DATA (exact content you provided) ----------
-    // Titles are the exact questions/headings. Answers are verbatim with minimal HTML for readability.
+    // ---------- FAQ DATA (your exact content) ----------
     const FAQ_DATA = [
       /* ===================== EMPLOYEES ===================== */
-      { category:"employees",
-        title:"What is the WeEngage survey for?",
-        keywords:["purpose","weengage","what is","engagement","survey"],
-        answer:`At Straumann Group, we truly want to understand what drives and inspires our people - what motivates you, how you feel about your work, and what makes you want to grow and stay with us.<br><br>
-Through our annual weEngage Survey, running since 2020, we listen to your voice. Your answers give us valuable insights into how we lead, collaborate, and nurture our culture. They help us identify what we’re doing well and where we can do even better - ensuring that our actions strengthen our shared well-being and keep us moving forward together on our Cultural Journey.` },
-
-      { category:"employees",
-        title:"What is the response deadline for 2025?",
-        keywords:["deadline","dates","2025","open","close"],
-        answer:`The survey can be conducted from Nov 3rd until Nov 17th.` },
-
-      { category:"employees",
-        title:"What is the period that I should consider when answering the survey?",
-        keywords:["period","timeframe","reference","window"],
-        answer:`The period that should be considered in this survey refers from November 2024 to the present moment.` },
-
-      { category:"employees",
-        title:"Who responds to the survey? Who is the target audience?",
-        keywords:["who responds","eligibility","target","audience","qr","u-number","date of birth"],
-        answer:`All employees are invited to answer the survey (including interns). Even if you are on maternity leave, vacation or out of office due to long-term sickness, you can respond the survey. You can also use the QR code provided on weEngage poster or HR, by inserting your U-number and date of birth in YYYY-MM-DD format.<br><br>
-<strong>External/contingent populations and populations with employment status change are not eligible to answer the survey.</strong>` },
-
-      { category:"employees",
-        title:"What is engagement?",
-        keywords:["engagement","think feel act","definition"],
-        answer:`Engagement is the outcome of 3 dimensions: How our people THINK, FEEL and ACT. Engagement is more than just participation - it’s the feeling of truly belonging, of being part of something bigger than yourself. It’s the energy, passion, and purpose that connect us to our work, our colleagues, and our shared mission.<br><br>
-When we measure engagement, we’re not just looking at satisfaction scores — we’re listening to the heartbeat of our company. We understand what motivates us, what inspires us to give our best, and how deeply we feel connected to the Straumann Group family.` },
-
-      { category:"employees",
-        title:"What is Simple, Confidential and 100% online means for weEngage?",
-        keywords:["confidential","privacy","viva glint","online"],
-        answer:`It is simple to access and complete, it is confidential and conducted entirely online by Viva GLINT. Please note that the survey is confidential, not anonymous. So what confidential means...<br><br>
-First of all data privacy and trust are key priorities for Viva GLINT. All responses are collected and protected, but the system is designed to prevent individual responses from being identifiable in reporting. Your individual responses will not be visible to others; instead, your answers will be grouped with those of others to provide accurate reporting for hierarchical / regional and global rollout.<br><br>
-Viva Glint, a Microsoft-owned employee engagement platform, is a reputable and trusted solution used by mid-sized to large enterprises, including organizations with over 250,000 employees—across more than 150 countries and in over 50 languages. Recognized for its excellence, including being named to the Forbes Cloud 100 list, it is trusted by leading companies such as P&G, United Airlines and Hilton Hotels Worldwide.` },
-
-      { category:"employees",
-        title:"How is Culture defined in Straumann Group?",
-        keywords:["culture","player & learner","magic triangle","core beliefs"],
-        answer:`Culture in our company is defined as how we act and feel every day and it’s each of our responsibilities to take care of it. Culture is why many join us and stay with us. Our culture is based on our 3 core pillars, which are:<br>
-• The Player & Learner mindset.<br>
-• The Magic Triangle: I, WE and IT.<br>
-• 7 core beliefs:<br>
-&nbsp;&nbsp;o Customer Obsession /Centricity.<br>
-&nbsp;&nbsp;o Entrepreneurial Mindset.<br>
-&nbsp;&nbsp;o Agility & Decisiveness.<br>
-&nbsp;&nbsp;o Taking Ownership.<br>
-&nbsp;&nbsp;o Passion for Learning.<br>
-&nbsp;&nbsp;o Psychological Safety.<br>
-&nbsp;&nbsp;o Drive Engagement.` },
-
-      { category:"employees",
-        title:"Who has access to the survey results?",
-        keywords:["access","results","visibility","threshold"],
-        answer:`Managers only see results from their own area. HR Business Partners and the Grow & Culture team have broader access. Managers can see results for their own team or area, as long as there are at least five responses from their team. And they see the comments from the survey if there are at least 10 responses from their team.` },
-
-      { category:"employees",
-        title:"What happens after WeEngage’s results are published?",
-        keywords:["actions","after results","follow up"],
-        answer:`After the survey’s end, the results are announced to managers and shared to employees. After that, we mapped actions that promote the culture and engagement altogether, as well plans aimed at improvement from critical points of each area. These actions could be defined as training sessions 1:1, feedback sessions, team meetings, re-creating our flowcharts and developing our communication channels etc.` },
-
-      { category:"employees",
-        title:"What organization should I think about when the questions refer to Straumann Group?",
-        keywords:["organization","what to consider","i we it"],
-        answer:`Straumann Group operates under the umbrella of a high-performance player learner culture, a set of core beliefs deeply incorporating the dimensions of I, We and It - these are also embedded in our programs and processes across the world — meaning that whether you’re in a local branch or the headquarters, the same practices, beliefs and expectations apply worldwide. This alignment ensures that every team, regardless of geography, builds and experiences the same culture, standards of excellence, innovation, and care that define the Straumann Group brand.<br><br>
-From an employee’s perspective, being part of STMN Group means belonging to a truly international organization where collaboration and purpose go beyond borders. You feel part of a shared vision — of unlocking the potential of people's lives— while working in an environment that fosters trust, respect, and continuous learning. The strength of the organization lies in this global unity combined with local expertise, making you both locally grounded and globally connected.` },
-
-      { category:"employees",
-        title:"When the question refers to “my manager”, who should I consider while answering?",
-        keywords:["my manager","line manager","reporting"],
-        answer:`Always consider who you are directly reporting to. This person is your reporting/line manager who is normally one level above you. You may check your organizational structure on TEAMS or please ask your local HRBP.` },
-
-      { category:"employees",
-        title:"If the question refers “my team”, who should I consider?",
-        keywords:["my team","peers"],
-        answer:`Your peers, who report to the same manager.` },
-
-      { category:"employees",
-        title:"I don’t have direct contact with our customers, how could I answer the questions that refer to them?",
-        keywords:["customers","internal customers","support areas"],
-        answer:`When we talk about customers, we must consider our internal customers too. Many support areas don’t have direct contact with our end customers (external customers), but they support other areas of the Company so that information flows and processes run efficiently. Therefore, when we are evaluating something related to customers, we must consider who are the people that we serve and support with our work.<br><br>
-Please also do not forget that even if your role is not customer-facing it doesn’t mean that your job does not have any effect on them. Every employee, with or without contacting customers, has a great impact on our products and services. For more information do not hesitate to ask your line manager more.` },
-
-      { category:"employees",
-        title:"When the question refers to Communication, should I consider communication between people or the corporate communication area?",
-        keywords:["communication","people","corporate comms"],
-        answer:`Always consider communication between people (between areas, team, leadership, etc.). WeEngage don’t evaluate specific areas/departments of the company.` },
-
-      { category:"employees",
-        title:"Which team or function should I think about when answering the Collaboration question on weEngage?",
-        keywords:["collaboration","teams","functions"],
-        answer:`Collaboration and teamwork are key to how each of us works. Think broadly. It is about how well you and your colleagues work together — both within your own team and with other teams and functions across the organization. In other words:<br>
-• Start with your immediate team — the people you work with day-to-day.<br>
-• Then widen the view to include other teams, departments and support functions you interact with (for example: Sales, Marketing, R&D, Operations, IT, Finance, HR, etc.), as well as external partners or stakeholders where relevant.<br>
-• Focus on the cooperative behaviors you can influence: the quality and clarity of communication, how hand-offs are managed, mutual support and respect, shared goals and problem-solving, and how teams coordinate across functions.` },
-
-      { category:"employees",
-        title:"I’ve recently changed area, how/who should I consider while answering?",
-        keywords:["changed area","transfer","new role"],
-        answer:`Your current line manager and peers.` },
-
-      { category:"employees",
-        title:"I’ve become manager of a new team recently, who will evaluate me?",
-        keywords:["new manager","evaluate"],
-        answer:`Your new team.` },
-
-      { category:"employees",
-        title:"If I've only been in the area for a short time and don't have much knowledge, how should I answer?",
-        keywords:["short time","limited knowledge","how to answer"],
-        answer:`You should answer according to your experience, even in a short period.` },
-
-      { category:"employees",
-        title:"Unfortunately, I will be leaving the company in mid-November. Will I still be included in the survey?",
-        keywords:["leaving","eligibility"],
-        answer:`Yes, all Straumann Group employees as of the survey start date, except external employees, are eligible to participate in the survey.` },
-
-      { category:"employees",
-        title:"I don’t have corporate e-mail, how could I access the platform to answer the survey?",
-        keywords:["no email","access","qr","card","u-number","date of birth"],
-        answer:`In the case of employees who don't have an e-mail address, they will receive a printed card from their managers. On this card there will be a QR Code that must be accessed via the camera of the cell phone, but also an access link to use directly via the browser. For entities where printed cards are not available, employees will use the QR Codes provided on weEngage posters.<br><br>
-When accessing the QR Code or the link, the employee will have to log in to the system using the data provided on the card and will then be able to answer the survey as normal. (u-number & date of birth in YYYY-MM-DD format)<br><br>
-The card is individual and non-transferable and is given to each employee by name.` },
-
-      { category:"employees",
-        title:"Can I redo my survey if I’ve forgotten something or want to change an answer?",
-        keywords:["redo","retake","change answers"],
-        answer:`You can take the survey again and as many times while it’s still open by logging in with your access details. Each time you do, you’ll need to answer all the questions again, and only your latest submission will count.` },
-
-      { category:"employees",
-        title:"I’m on vacation/maternity leave, long-term sick leave, can I answer the survey?",
-        keywords:["vacation","maternity","sick leave"],
-        answer:`Yes, your login access will be sent by e-mail, and you can access to answer the survey if you want to. You can also use the QR code by inserting your U-number and date of birth in YYYY-MM-DD format.` },
-
-      { category:"employees",
-        title:"Can the survey link be accessed by a user/domain/email other than STM Group's?",
-        keywords:["access","domain","external email"],
-        answer:`No, access is exclusively via corporate e-mail. In the case of employees who do not have an e-mail address should use the QR code by adding their U-number and date of birth in YYYY-MM-DD format.` },
-
-      { category:"employees",
-        title:"My colleague accidentally deleted/did not receive the Viva GLINT survey link. Can I forward mine?",
-        keywords:["lost link","forward","invite","viva glint"],
-        answer:`No, any emails sent directly to your mailbox are intended for you. Viva GLINT sends reminder e-mails to individuals with the link frequently. They should reach out to their local HRPBs for assistance in case they are not receiving any e-mail from Viva GLINT.` },
-
-      { category:"employees",
-        title:"General Program Questions (contact)",
-        keywords:["program questions","contact","we-engage"],
-        answer:`For program-related questions not tied to access or data, contact the Grow team or weEngage project team. (<a class="underline" href="mailto:we-engage@straumann.com">we-engage@straumann.com</a>)` },
+      { category:"employees", title:"What is the WeEngage survey for?", keywords:["purpose","weengage","what is","engagement","survey"], answer:`At Straumann Group, we truly want to understand what drives and inspires our people - what motivates you, how you feel about your work, and what makes you want to grow and stay with us.<br><br>Through our annual weEngage Survey, running since 2020, we listen to your voice. Your answers give us valuable insights into how we lead, collaborate, and nurture our culture. They help us identify what we’re doing well and where we can do even better - ensuring that our actions strengthen our shared well-being and keep us moving forward together on our Cultural Journey.` },
+      { category:"employees", title:"What is the response deadline for 2025?", keywords:["deadline","dates","2025","open","close"], answer:`The survey can be conducted from Nov 3rd until Nov 17th.` },
+      { category:"employees", title:"What is the period that I should consider when answering the survey?", keywords:["period","timeframe","reference","window"], answer:`The period that should be considered in this survey refers from November 2024 to the present moment.` },
+      { category:"employees", title:"Who responds to the survey? Who is the target audience?", keywords:["who responds","eligibility","target","audience","qr","u-number","date of birth"], answer:`All employees are invited to answer the survey (including interns). Even if you are on maternity leave, vacation or out of office due to long-term sickness, you can respond the survey. You can also use the QR code provided on weEngage poster or HR, by inserting your U-number and date of birth in YYYY-MM-DD format.<br><br><strong>External/contingent populations and populations with employment status change are not eligible to answer the survey.</strong>` },
+      { category:"employees", title:"What is engagement?", keywords:["engagement","think feel act","definition"], answer:`Engagement is the outcome of 3 dimensions: How our people THINK, FEEL and ACT. Engagement is more than just participation - it’s the feeling of truly belonging, of being part of something bigger than yourself. It’s the energy, passion, and purpose that connect us to our work, our colleagues, and our shared mission.<br><br>When we measure engagement, we’re not just looking at satisfaction scores — we’re listening to the heartbeat of our company. We understand what motivates us, what inspires us to give our best, and how deeply we feel connected to the Straumann Group family.` },
+      { category:"employees", title:"What is Simple, Confidential and 100% online means for weEngage?", keywords:["confidential","privacy","viva glint","online"], answer:`It is simple to access and complete, it is confidential and conducted entirely online by Viva GLINT. Please note that the survey is confidential, not anonymous. So what confidential means...<br><br>First of all data privacy and trust are key priorities for Viva GLINT. All responses are collected and protected, but the system is designed to prevent individual responses from being identifiable in reporting. Your individual responses will not be visible to others; instead, your answers will be grouped with those of others to provide accurate reporting for hierarchical / regional and global rollout.<br><br>Viva Glint, a Microsoft-owned employee engagement platform, is a reputable and trusted solution used by mid-sized to large enterprises, including organizations with over 250,000 employees—across more than 150 countries and in over 50 languages. Recognized for its excellence, including being named to the Forbes Cloud 100 list, it is trusted by leading companies such as P&G, United Airlines and Hilton Hotels Worldwide.` },
+      { category:"employees", title:"How is Culture defined in Straumann Group?", keywords:["culture","player & learner","magic triangle","core beliefs"], answer:`Culture in our company is defined as how we act and feel every day and it’s each of our responsibilities to take care of it. Culture is why many join us and stay with us. Our culture is based on our 3 core pillars, which are:<br>• The Player & Learner mindset.<br>• The Magic Triangle: I, WE and IT.<br>• 7 core beliefs:<br>&nbsp;&nbsp;o Customer Obsession /Centricity.<br>&nbsp;&nbsp;o Entrepreneurial Mindset.<br>&nbsp;&nbsp;o Agility & Decisiveness.<br>&nbsp;&nbsp;o Taking Ownership.<br>&nbsp;&nbsp;o Passion for Learning.<br>&nbsp;&nbsp;o Psychological Safety.<br>&nbsp;&nbsp;o Drive Engagement.` },
+      { category:"employees", title:"Who has access to the survey results?", keywords:["access","results","visibility","threshold"], answer:`Managers only see results from their own area. HR Business Partners and the Grow & Culture team have broader access. Managers can see results for their own team or area, as long as there are at least five responses from their team. And they see the comments from the survey if there are at least 10 responses from their team.` },
+      { category:"employees", title:"What happens after WeEngage’s results are published?", keywords:["actions","after results","follow up"], answer:`After the survey’s end, the results are announced to managers and shared to employees. After that, we mapped actions that promote the culture and engagement altogether, as well plans aimed at improvement from critical points of each area. These actions could be defined as training sessions 1:1, feedback sessions, team meetings, re-creating our flowcharts and developing our communication channels etc.` },
+      { category:"employees", title:"What organization should I think about when the questions refer to Straumann Group?", keywords:["organization","what to consider","i we it"], answer:`Straumann Group operates under the umbrella of a high-performance player learner culture, a set of core beliefs deeply incorporating the dimensions of I, We and It - these are also embedded in our programs and processes across the world — meaning that whether you’re in a local branch or the headquarters, the same practices, beliefs and expectations apply worldwide. This alignment ensures that every team, regardless of geography, builds and experiences the same culture, standards of excellence, innovation, and care that define the Straumann Group brand.<br><br>From an employee’s perspective, being part of STMN Group means belonging to a truly international organization where collaboration and purpose go beyond borders. You feel part of a shared vision — of unlocking the potential of people's lives— while working in an environment that fosters trust, respect, and continuous learning. The strength of the organization lies in this global unity combined with local expertise, making you both locally grounded and globally connected.` },
+      { category:"employees", title:"When the question refers to “my manager”, who should I consider while answering?", keywords:["my manager","line manager","reporting"], answer:`Always consider who you are directly reporting to. This person is your reporting/line manager who is normally one level above you. You may check your organizational structure on TEAMS or please ask your local HRBP.` },
+      { category:"employees", title:"If the question refers “my team”, who should I consider?", keywords:["my team","peers"], answer:`Your peers, who report to the same manager.` },
+      { category:"employees", title:"I don’t have direct contact with our customers, how could I answer the questions that refer to them?", keywords:["customers","internal customers","support areas"], answer:`When we talk about customers, we must consider our internal customers too. Many support areas don’t have direct contact with our end customers (external customers), but they support other areas of the Company so that information flows and processes run efficiently. Therefore, when we are evaluating something related to customers, we must consider who are the people that we serve and support with our work.<br><br>Please also do not forget that even if your role is not customer-facing it doesn’t mean that your job does not have any effect on them. Every employee, with or without contacting customers, has a great impact on our products and services. For more information do not hesitate to ask your line manager more.` },
+      { category:"employees", title:"When the question refers to Communication, should I consider communication between people or the corporate communication area?", keywords:["communication","people","corporate comms"], answer:`Always consider communication between people (between areas, team, leadership, etc.). WeEngage don’t evaluate specific areas/departments of the company.` },
+      { category:"employees", title:"Which team or function should I think about when answering the Collaboration question on weEngage?", keywords:["collaboration","teams","functions"], answer:`Collaboration and teamwork are key to how each of us works. Think broadly. It is about how well you and your colleagues work together — both within your own team and with other teams and functions across the organization. In other words:<br>• Start with your immediate team — the people you work with day-to-day.<br>• Then widen the view to include other teams, departments and support functions you interact with (for example: Sales, Marketing, R&D, Operations, IT, Finance, HR, etc.), as well as external partners or stakeholders where relevant.<br>• Focus on the cooperative behaviors you can influence: the quality and clarity of communication, how hand-offs are managed, mutual support and respect, shared goals and problem-solving, and how teams coordinate across functions.` },
+      { category:"employees", title:"I’ve recently changed area, how/who should I consider while answering?", keywords:["changed area","transfer","new role"], answer:`Your current line manager and peers.` },
+      { category:"employees", title:"I’ve become manager of a new team recently, who will evaluate me?", keywords:["new manager","evaluate"], answer:`Your new team.` },
+      { category:"employees", title:"If I've only been in the area for a short time and don't have much knowledge, how should I answer?", keywords:["short time","limited knowledge","how to answer"], answer:`You should answer according to your experience, even in a short period.` },
+      { category:"employees", title:"Unfortunately, I will be leaving the company in mid-November. Will I still be included in the survey?", keywords:["leaving","eligibility"], answer:`Yes, all Straumann Group employees as of the survey start date, except external employees, are eligible to participate in the survey.` },
+      { category:"employees", title:"I don’t have corporate e-mail, how could I access the platform to answer the survey?", keywords:["no email","access","qr","card","u-number","date of birth"], answer:`In the case of employees who don't have an e-mail address, they will receive a printed card from their managers. On this card there will be a QR Code that must be accessed via the camera of the cell phone, but also an access link to use directly via the browser. For entities where printed cards are not available, employees will use the QR Codes provided on weEngage posters.<br><br>When accessing the QR Code or the link, the employee will have to log in to the system using the data provided on the card and will then be able to answer the survey as normal. (u-number & date of birth in YYYY-MM-DD format)<br><br>The card is individual and non-transferable and is given to each employee by name.` },
+      { category:"employees", title:"Can I redo my survey if I’ve forgotten something or want to change an answer?", keywords:["redo","retake","change answers"], answer:`You can take the survey again and as many times while it’s still open by logging in with your access details. Each time you do, you’ll need to answer all the questions again, and only your latest submission will count.` },
+      { category:"employees", title:"I’m on vacation/maternity leave, long-term sick leave, can I answer the survey?", keywords:["vacation","maternity","sick leave"], answer:`Yes, your login access will be sent by e-mail, and you can access to answer the survey if you want to. You can also use the QR code by inserting your U-number and date of birth in YYYY-MM-DD format.` },
+      { category:"employees", title:"Can the survey link be accessed by a user/domain/email other than STM Group's?", keywords:["access","domain","external email"], answer:`No, access is exclusively via corporate e-mail. In the case of employees who do not have an e-mail address should use the QR code by adding their U-number and date of birth in YYYY-MM-DD format.` },
+      { category:"employees", title:"My colleague accidentally deleted/did not receive the Viva GLINT survey link. Can I forward mine?", keywords:["lost link","forward","invite","viva glint"], answer:`No, any emails sent directly to your mailbox are intended for you. Viva GLINT sends reminder e-mails to individuals with the link frequently. They should reach out to their local HRPBs for assistance in case they are not receiving any e-mail from Viva GLINT.` },
+      { category:"employees", title:"General Program Questions (contact)", keywords:["program questions","contact","we-engage"], answer:`For program-related questions not tied to access or data, contact the Grow team or weEngage project team. (<a class="underline" href="mailto:we-engage@straumann.com">we-engage@straumann.com</a>)` },
 
       /* ===================== MANAGERS ===================== */
-      { category:"managers",
-        title:"What happens after results are shared with managers?",
-        keywords:["after results","actions","review"],
-        answer:`Managers review results with HRBPs and the Grow & Culture team. They identify strengths, challenges, and define actions such as workshops, feedback sessions, or training. It is important to understand the business context of the results and what has changed since the previous year.` },
-
-      { category:"managers",
-        title:"Who will evaluate me if I am a new manager?",
-        keywords:["new manager","evaluate"],
-        answer:`Your current team will evaluate you, even if you’ve just joined them irrespective of how long you have been with them.` },
-
-      { category:"managers",
-        title:"Who has access to survey results?",
-        keywords:["access","results","visibility"],
-        answer:`Managers only see results from their own area. HRBPs and the Grow & Culture team have broader access.` },
-
-      { category:"managers",
-        title:"How should I support employees without corporate e-mail?",
-        keywords:["no email","support","access"],
-        answer:`Provide them with their printed cards, explain the access process, and ensure they can complete the survey. If you still struggle to secure access, please send an e-mail to we-engage@straumann.com and someone will help you.` },
-
-      { category:"managers",
-        title:"How can I encourage participation?",
-        keywords:["participation","engage","confidentiality"],
-        answer:`Communicate the importance of the survey openly, provide time for employees to answer, and reassure them about confidentiality. Dedicate 10-15 minutes during your weekly team meetings to discuss weEngage, and feel free to review the questions together. You can also highlight actions taken this year that are related to weEngage.` },
-
-      { category:"managers",
-        title:"What should I do if employees have doubts about survey questions?",
-        keywords:["doubts","questions","guide"],
-        answer:`Guide them based on the instructions: consider their direct manager, internal customers, and current work context. Do not forget to share weEngage FAQs for Employees document, which can be found here.` },
-
-      { category:"managers",
-        title:"The recent news has caused uncertainty within my team. What steps should I take?",
-        keywords:["uncertainty","news","psychological safety"],
-        answer:`Please be open and arrange a casual meeting with your team to explain the situation and address any questions right away. Organize this meeting, either in person or virtually, in a timely manner to prevent employees from making their own assumptions. Be clear and honest about the situation and the reasons behind it. If necessary, you can invite your HRBP or GM to join the meeting. Let them know if they have any questions or doubts in their minds, they can always connect with you. It is on us leaders to create psychological safety where everyone can voice their concern. These BIG business decisions are made to ensure the ongoing success of our company, and it's important to take these precautions before any issues arise.` },
-
-      { category:"managers",
-        title:"I don’t know how to read & analyze my report, what can I do?",
-        keywords:["report","analyze","help","welearn"],
-        answer:`Global weEngage team and your HRBP will be happy to support you. In the mean time please check the online trainings on weLearn regarding weEngage Survey & Reports.` },
-
-      { category:"managers",
-        title:"What actions can managers take based on survey results?",
-        keywords:["actions","follow up","plan"],
-        answer:`Examples include team offsites, 1:1 session, feedback discussions, training initiatives, and other engagement activities. Make sure to align with your team with actions and encourage them to find the action plans among themselves.` },
-
-      { category:"managers",
-        title:"On production sites how can I manage allocating time for our team to respond to the survey?",
-        keywords:["production","time allocation","shifts"],
-        answer:`Please encourage employees at our production sites to take part in the survey. Some motivating ideas are shared with HRs already. They can respond to the survey using their personal cell phones by scanning the QR code, kiosks, or shared workstations that may be available. Organizing small groups at 15/20-minute intervals each day will help make sure everyone has the opportunity to complete the survey within their working hours and share about our culture and engagement.` },
+      { category:"managers", title:"What happens after results are shared with managers?", keywords:["after results","actions","review"], answer:`Managers review results with HRBPs and the Grow & Culture team. They identify strengths, challenges, and define actions such as workshops, feedback sessions, or training. It is important to understand the business context of the results and what has changed since the previous year.` },
+      { category:"managers", title:"Who will evaluate me if I am a new manager?", keywords:["new manager","evaluate"], answer:`Your current team will evaluate you, even if you’ve just joined them irrespective of how long you have been with them.` },
+      { category:"managers", title:"Who has access to survey results?", keywords:["access","results","visibility"], answer:`Managers only see results from their own area. HRBPs and the Grow & Culture team have broader access.` },
+      { category:"managers", title:"How should I support employees without corporate e-mail?", keywords:["no email","support","access"], answer:`Provide them with their printed cards, explain the access process, and ensure they can complete the survey. If you still struggle to secure access, please send an e-mail to we-engage@straumann.com and someone will help you.` },
+      { category:"managers", title:"How can I encourage participation?", keywords:["participation","engage","confidentiality"], answer:`Communicate the importance of the survey openly, provide time for employees to answer, and reassure them about confidentiality. Dedicate 10-15 minutes during your weekly team meetings to discuss weEngage, and feel free to review the questions together. You can also highlight actions taken this year that are related to weEngage.` },
+      { category:"managers", title:"What should I do if employees have doubts about survey questions?", keywords:["doubts","questions","guide"], answer:`Guide them based on the instructions: consider their direct manager, internal customers, and current work context. Do not forget to share weEngage FAQs for Employees document, which can be found here.` },
+      { category:"managers", title:"The recent news has caused uncertainty within my team. What steps should I take?", keywords:["uncertainty","news","psychological safety"], answer:`Please be open and arrange a casual meeting with your team to explain the situation and address any questions right away. Organize this meeting, either in person or virtually, in a timely manner to prevent employees from making their own assumptions. Be clear and honest about the situation and the reasons behind it. If necessary, you can invite your HRBP or GM to join the meeting. Let them know if they have any questions or doubts in their minds, they can always connect with you. It is on us leaders to create psychological safety where everyone can voice their concern. These BIG business decisions are made to ensure the ongoing success of our company, and it's important to take these precautions before any issues arise.` },
+      { category:"managers", title:"I don’t know how to read & analyze my report, what can I do?", keywords:["report","analyze","help","welearn"], answer:`Global weEngage team and your HRBP will be happy to support you. In the mean time please check the online trainings on weLearn regarding weEngage Survey & Reports.` },
+      { category:"managers", title:"What actions can managers take based on survey results?", keywords:["actions","follow up","plan"], answer:`Examples include team offsites, 1:1 session, feedback discussions, training initiatives, and other engagement activities. Make sure to align with your team with actions and encourage them to find the action plans among themselves.` },
+      { category:"managers", title:"On production sites how can I manage allocating time for our team to respond to the survey?", keywords:["production","time allocation","shifts"], answer:`Please encourage employees at our production sites to take part in the survey. Some motivating ideas are shared with HRs already. They can respond to the survey using their personal cell phones by scanning the QR code, kiosks, or shared workstations that may be available. Organizing small groups at 15/20-minute intervals each day will help make sure everyone has the opportunity to complete the survey within their working hours and share about our culture and engagement.` },
 
       /* ===================== HRBPs ===================== */
-      { category:"hrbps",
-        title:"Scope | Target audience",
-        keywords:["scope","target","eligibility","qr","u-number"],
-        answer:`All employees are invited to answer the survey (including interns). Even if you are on maternity leave, vacation or out of office due to long-term sickness, you can respond the survey. You can also use the QR code provided on weEngage posters or HR, by inserting your U-number and date of birth in YYYY-MM-DD format.<br><br>
-External/contingent populations and populations with employment status changes are not eligible to answer the survey.` },
-
-      { category:"hrbps",
-        title:"Access to Results",
-        keywords:["access","results","provisioning","managers"],
-        answer:`• HR Business Partners (HRBPs): Access to survey results can be provided only upon request. Please contact Janis Birrer to request access. Different demographics (e.g. Legal Entity) can be used as criteria for access provisioning.<br>
-• Managers: Managers automatically receive access to the results of their teams through the system. The visibility is based on the roll-up structure defined in Employee Central (EC). This ensures that reporting lines are consistent, and results are allocated correctly.` },
-
-      { category:"hrbps",
-        title:"Distribution of the Survey",
-        keywords:["invitations","missing invite","spam"],
-        answer:`• Survey Invitations: All employees should receive their personal invitation to participate in the engagement survey.<br>
-• If an Invitation Is Missing:<br>
-&nbsp;&nbsp;o First, check the spam/junk folder to ensure the email was not filtered.<br>
-&nbsp;&nbsp;o If the invitation is still not found, HRBPs could contact Janis Birrer to manually resend the survey invitation to the employee.` },
-
-      { category:"hrbps",
-        title:"Visibility of Results",
-        keywords:["threshold","comments","continuity"],
-        answer:`• Minimum Respondents for Results: To protect confidentiality, a manager will only see results if there are at least five respondents in their reporting line.<br>
-• Minimum Comments for Qualitative Insights (Comments): Comments are only displayed when a minimum of ten comments have been submitted. This ensures anonymity and prevents identification of individual feedback.<br>
-• Result Continuity: Survey results follow the manager across years, enabling trend analysis and ongoing tracking over time.` },
-
-      { category:"hrbps",
-        title:"Critical Data Checks",
-        keywords:["employee central","ec","data","reporting lines","job architecture","tenure","dob","username"],
-        answer:`The accuracy and usefulness of survey results heavily depend on the integrity of underlying HR data. The following elements must be verified in Employee Central (EC):<br>
-1. Reporting Lines<br>
-&nbsp;&nbsp;o Drive the visibility of results for managers.<br>
-&nbsp;&nbsp;o Incorrect reporting lines may lead to misallocated or inaccessible results.<br>
-2. Organizational Structure<br>
-&nbsp;&nbsp;o Includes Organization, Organizational Unit, and Department.<br>
-&nbsp;&nbsp;o Critical for granting correct access and ensuring reporting accuracy at different organizational levels.<br>
-3. Job Architecture<br>
-&nbsp;&nbsp;o Covers Job Family, Job Sub-Family, and Standard Job Title.<br>
-&nbsp;&nbsp;o Essential for comparative reporting, benchmarking, and demographic segmentation of results.<br>
-4. Tenure<br>
-&nbsp;&nbsp;o Used to analyze engagement levels across employee tenure groups.<br>
-5. Date of Birth (Generations)<br>
-&nbsp;&nbsp;o Enables generational analysis (e.g., Baby Boomers, Gen X, Millennials, Gen Z).<br>
-&nbsp;&nbsp;o Useful for understanding engagement drivers across age groups.<br>
-6. Username Availability in EC<br>
-&nbsp;&nbsp;o Every employee must have a valid username stored in Employee Central.<br>
-&nbsp;&nbsp;o Without it, access to the survey or results cannot be granted.` },
-
-      { category:"hrbps",
-        title:"Employees with External Managers",
-        keywords:["external managers","hierarchy","roll-up"],
-        answer:`If employees are reporting to contingent workers (externals not loaded to Viva Glint) the manager hierarchy is broken, and it is not possible to report on for this manager from a roll-up perspective. Even if employees have an external direct manager, their responses will be included in the roll-up analysis.` },
-
-      { category:"hrbps",
-        title:"Employees without e-mail Addresses on EC",
-        keywords:["no email","ec","qr"],
-        answer:`They can complete the survey by scanning the QR code and entering their u-Numbers along with the date of birth (YYYY-MM-DD) as recorded in EC.` },
-
-      { category:"hrbps",
-        title:"Support Model – Access Provisioning",
-        keywords:["access provisioning","contacts","janis birrer","niti khosla"],
-        answer:`HRBPs needing system access should have the Grow Head request it by contacting Janis Birrer (janis.birrer@straumann.com) and copying Niti Khosla (niti.khosla@straumann.com) and sharing a description of the what target population (e.g. Legal Entity) the HRBP should have access.` },
-
-      { category:"hrbps",
-        title:"Data Issues in Employee Central",
-        keywords:["data issues","h ris","support channels"],
-        answer:`Report discrepancies via the standard HRIS/system support channels to ensure proper tracking and resolution.` },
-
-      { category:"hrbps",
-        title:"Invitation Issues",
-        keywords:["invite issues","missing invite"],
-        answer:`If an employee cannot access or does not receive a survey, the Grow Head should escalate to Janis Birrer with:<br>
-• Employee name<br>
-• Employee Username<br>
-• Description of the issue` },
-
-      { category:"hrbps",
-        title:"General Program Questions (contact)",
-        keywords:["program questions","contact","we-engage"],
-        answer:`For program-related questions not tied to access or data, contact the Grow team or weEngage project team. (<a class="underline" href="mailto:we-engage@straumann.com">we-engage@straumann.com</a>)` },
+      { category:"hrbps", title:"Scope | Target audience", keywords:["scope","target","eligibility","qr","u-number"], answer:`All employees are invited to answer the survey (including interns). Even if you are on maternity leave, vacation or out of office due to long-term sickness, you can respond the survey. You can also use the QR code provided on weEngage posters or HR, by inserting your U-number and date of birth in YYYY-MM-DD format.<br><br>External/contingent populations and populations with employment status changes are not eligible to answer the survey.` },
+      { category:"hrbps", title:"Access to Results", keywords:["access","results","provisioning","managers"], answer:`• HR Business Partners (HRBPs): Access to survey results can be provided only upon request. Please contact Janis Birrer to request access. Different demographics (e.g. Legal Entity) can be used as criteria for access provisioning.<br>• Managers: Managers automatically receive access to the results of their teams through the system. The visibility is based on the roll-up structure defined in Employee Central (EC). This ensures that reporting lines are consistent, and results are allocated correctly.` },
+      { category:"hrbps", title:"Distribution of the Survey", keywords:["invitations","missing invite","spam"], answer:`• Survey Invitations: All employees should receive their personal invitation to participate in the engagement survey.<br>• If an Invitation Is Missing:<br>&nbsp;&nbsp;o First, check the spam/junk folder to ensure the email was not filtered.<br>&nbsp;&nbsp;o If the invitation is still not found, HRBPs could contact Janis Birrer to manually resend the survey invitation to the employee.` },
+      { category:"hrbps", title:"Visibility of Results", keywords:["threshold","comments","continuity"], answer:`• Minimum Respondents for Results: To protect confidentiality, a manager will only see results if there are at least five respondents in their reporting line.<br>• Minimum Comments for Qualitative Insights (Comments): Comments are only displayed when a minimum of ten comments have been submitted. This ensures anonymity and prevents identification of individual feedback.<br>• Result Continuity: Survey results follow the manager across years, enabling trend analysis and ongoing tracking over time.` },
+      { category:"hrbps", title:"Critical Data Checks", keywords:["employee central","ec","data","reporting lines","job architecture","tenure","dob","username"], answer:`The accuracy and usefulness of survey results heavily depend on the integrity of underlying HR data. The following elements must be verified in Employee Central (EC):<br>1. Reporting Lines<br>&nbsp;&nbsp;o Drive the visibility of results for managers.<br>&nbsp;&nbsp;o Incorrect reporting lines may lead to misallocated or inaccessible results.<br>2. Organizational Structure<br>&nbsp;&nbsp;o Includes Organization, Organizational Unit, and Department.<br>&nbsp;&nbsp;o Critical for granting correct access and ensuring reporting accuracy at different organizational levels.<br>3. Job Architecture<br>&nbsp;&nbsp;o Covers Job Family, Job Sub-Family, and Standard Job Title.<br>&nbsp;&nbsp;o Essential for comparative reporting, benchmarking, and demographic segmentation of results.<br>4. Tenure<br>&nbsp;&nbsp;o Used to analyze engagement levels across employee tenure groups.<br>5. Date of Birth (Generations)<br>&nbsp;&nbsp;o Enables generational analysis (e.g., Baby Boomers, Gen X, Millennials, Gen Z).<br>&nbsp;&nbsp;o Useful for understanding engagement drivers across age groups.<br>6. Username Availability in EC<br>&nbsp;&nbsp;o Every employee must have a valid username stored in Employee Central.<br>&nbsp;&nbsp;o Without it, access to the survey or results cannot be granted.` },
+      { category:"hrbps", title:"Employees with External Managers", keywords:["external managers","hierarchy","roll-up"], answer:`If employees are reporting to contingent workers (externals not loaded to Viva Glint) the manager hierarchy is broken, and it is not possible to report on for this manager from a roll-up perspective. Even if employees have an external direct manager, their responses will be included in the roll-up analysis.` },
+      { category:"hrbps", title:"Employees without e-mail Addresses on EC", keywords:["no email","ec","qr"], answer:`They can complete the survey by scanning the QR code and entering their u-Numbers along with the date of birth (YYYY-MM-DD) as recorded in EC.` },
+      { category:"hrbps", title:"Support Model – Access Provisioning", keywords:["access provisioning","contacts","janis birrer","niti khosla"], answer:`HRBPs needing system access should have the Grow Head request it by contacting Janis Birrer (janis.birrer@straumann.com) and copying Niti Khosla (niti.khosla@straumann.com) and sharing a description of the what target population (e.g. Legal Entity) the HRBP should have access.` },
+      { category:"hrbps", title:"Data Issues in Employee Central", keywords:["data issues","h ris","support channels"], answer:`Report discrepancies via the standard HRIS/system support channels to ensure proper tracking and resolution.` },
+      { category:"hrbps", title:"Invitation Issues", keywords:["invite issues","missing invite"], answer:`If an employee cannot access or does not receive a survey, the Grow Head should escalate to Janis Birrer with:<br>• Employee name<br>• Employee Username<br>• Description of the issue` },
+      { category:"hrbps", title:"General Program Questions (contact)", keywords:["program questions","contact","we-engage"], answer:`For program-related questions not tied to access or data, contact the Grow team or weEngage project team. (<a class="underline" href="mailto:we-engage@straumann.com">we-engage@straumann.com</a>)` },
 
       /* ===================== PRODUCTION SITE ===================== */
-      { category:"production",
-        title:"How can employees, without e-mail, access the survey?",
-        keywords:["no email","qr","u-number","date of birth","card"],
-        answer:`They can access the survey by scanning the QR code provided on weEngage poster or by HR and inserting their U-number and date of birth in YYYY-MM-DD format. For some regions employees will receive printed cards with a QR Code and login credentials. These are distributed personally by managers and are non-transferable.` },
-
-      { category:"production",
-        title:"Can employees access the survey from personal devices?",
-        keywords:["personal device","mobile","phone"],
-        answer:`Yes, they can use the QR Code or access link via any smart device.` },
-
-      { category:"production",
-        title:"What if an employee forgets or loses their access info-card / QR Code?",
-        keywords:["lost card","lost qr","replacement"],
-        answer:`They should quickly inform their manager, who will coordinate with HR, to arrange a replacement or to obtain the QR code and credentials again.` },
-
-      { category:"production",
-        title:"Can production employees conduct the survey during working hours?",
-        keywords:["working hours","time allocation","shifts"],
-        answer:`Yes, managers should allocate time so production employees can participate without impacting shifts.` },
-
-      { category:"production",
-        title:"Is participation mandatory?",
-        keywords:["mandatory","voluntary"],
-        answer:`Participation is voluntary, but we highly encourage all employees to respond, as your feedback helps guide improvements and foster a more engaged workplace.` },
-
-      { category:"production",
-        title:"Will production-specific issues be considered?",
-        keywords:["production issues","considered"],
-        answer:`Yes, feedback from production employees is essential and included in overall analysis.` },
-
-      { category:"production",
-        title:"Are survey responses from production employees treated differently?",
-        keywords:["treated differently","confidential"],
-        answer:`No. All responses are confidential and contribute equally to the overall results.` },
-
-      { category:"production",
-        title:"Concerns about confidentiality: Viva Glint policy",
-        keywords:["viva glint","confidentiality","privacy","forbes cloud 100"],
-        answer:`Viva Glint, a Microsoft-owned employee engagement platform, is a reputable and trusted solution used by mid-sized to large enterprises, including organizations with over 250,000 employees—across more than 150 countries and in over 50 languages. Recognized for its excellence, including being given to the Forbes Cloud 100 list, it is trusted by leading companies such as P&G, United Airlines and Hilton Hotels Worldwide.<br><br>
-A core principle of Viva Glint is its strong commitment to confidentiality and data privacy. Microsoft ensures that individual responses are treated as confidential, meaning they are protected and never reported in a way that can identify specific individuals. To safeguard this confidentiality, the platform applies thresholds so that results are only shown in aggregated form, ensuring each person’s input contributes to meaningful insights without compromising personal privacy or trust.` },
-
-      { category:"production",
-        title:"What organization should I think about when the questions refer to Straumann Group?",
-        keywords:["organization","what to consider"],
-        answer:`Straumann Group operates under the umbrella of a high-performance player learner culture, a set of core beliefs deeply incorporating the dimensions of I, We and It - these are also embedded in our programs and processes across the world — meaning that whether you’re in a local branch or the headquarters, the same practices, beliefs and expectations apply worldwide. This alignment ensures that every team, regardless of geography, builds and experiences the same culture, standards of excellence, innovation, and care that define the Straumann Group brand.<br><br>
-From an employee’s perspective, being part of STMN Group means belonging to a truly international organization where collaboration and purpose go beyond borders. You feel part of a shared vision — of unlocking the potential of people's lives— while working in an environment that fosters trust, respect, and continuous learning. The strength of the organization lies in this global unity combined with local expertise, making you both locally grounded and globally connected.` },
-
-      { category:"production",
-        title:"Which team/function should I think about when answering the Collaboration question?",
-        keywords:["collaboration","teams","functions"],
-        answer:`Collaboration and teamwork are key to how each of us works. Think broadly. It is about how well you and your colleagues work together — both within your own team and with other teams and functions across the organization.` },
-
-      { category:"production",
-        title:"General Program Questions (contact)",
-        keywords:["program questions","contact","we-engage"],
-        answer:`For program-related questions not tied to access or data, contact the Grow team or weEngage project team. (<a class="underline" href="mailto:we-engage@straumann.com">we-engage@straumann.com</a>)` },
+      { category:"production", title:"How can employees, without e-mail, access the survey?", keywords:["no email","qr","u-number","date of birth","card"], answer:`They can access the survey by scanning the QR code provided on weEngage poster or by HR and inserting their U-number and date of birth in YYYY-MM-DD format. For some regions employees will receive printed cards with a QR Code and login credentials. These are distributed personally by managers and are non-transferable.` },
+      { category:"production", title:"Can employees access the survey from personal devices?", keywords:["personal device","mobile","phone"], answer:`Yes, they can use the QR Code or access link via any smart device.` },
+      { category:"production", title:"What if an employee forgets or loses their access info-card / QR Code?", keywords:["lost card","lost qr","replacement"], answer:`They should quickly inform their manager, who will coordinate with HR, to arrange a replacement or to obtain the QR code and credentials again.` },
+      { category:"production", title:"Can production employees conduct the survey during working hours?", keywords:["working hours","time allocation","shifts"], answer:`Yes, managers should allocate time so production employees can participate without impacting shifts.` },
+      { category:"production", title:"Is participation mandatory?", keywords:["mandatory","voluntary"], answer:`Participation is voluntary, but we highly encourage all employees to respond, as your feedback helps guide improvements and foster a more engaged workplace.` },
+      { category:"production", title:"Will production-specific issues be considered?", keywords:["production issues","considered"], answer:`Yes, feedback from production employees is essential and included in overall analysis.` },
+      { category:"production", title:"Are survey responses from production employees treated differently?", keywords:["treated differently","confidential"], answer:`No. All responses are confidential and contribute equally to the overall results.` },
+      { category:"production", title:"Concerns about confidentiality: Viva Glint policy", keywords:["viva glint","confidentiality","privacy","forbes cloud 100"], answer:`Viva Glint, a Microsoft-owned employee engagement platform, is a reputable and trusted solution used by mid-sized to large enterprises, including organizations with over 250,000 employees—across more than 150 countries and in over 50 languages. Recognized for its excellence, including being given to the Forbes Cloud 100 list, it is trusted by leading companies such as P&G, United Airlines and Hilton Hotels Worldwide.<br><br>A core principle of Viva Glint is its strong commitment to confidentiality and data privacy. Microsoft ensures that individual responses are treated as confidential, meaning they are protected and never reported in a way that can identify specific individuals. To safeguard this confidentiality, the platform applies thresholds so that results are only shown in aggregated form, ensuring each person’s input contributes to meaningful insights without compromising personal privacy or trust.` },
+      { category:"production", title:"What organization should I think about when the questions refer to Straumann Group?", keywords:["organization","what to consider"], answer:`Straumann Group operates under the umbrella of a high-performance player learner culture, a set of core beliefs deeply incorporating the dimensions of I, We and It - these are also embedded in our programs and processes across the world — meaning that whether you’re in a local branch or the headquarters, the same practices, beliefs and expectations apply worldwide. This alignment ensures that every team, regardless of geography, builds and experiences the same culture, standards of excellence, innovation, and care that define the Straumann Group brand.<br><br>From an employee’s perspective, being part of STMN Group means belonging to a truly international organization where collaboration and purpose go beyond borders. You feel part of a shared vision — of unlocking the potential of people's lives— while working in an environment that fosters trust, respect, and continuous learning. The strength of the organization lies in this global unity combined with local expertise, making you both locally grounded and globally connected.` },
+      { category:"production", title:"Which team/function should I think about when answering the Collaboration question?", keywords:["collaboration","teams","functions"], answer:`Collaboration and teamwork are key to how each of us works. Think broadly. It is about how well you and your colleagues work together — both within your own team and with other teams and functions across the organization.` },
+      { category:"production", title:"General Program Questions (contact)", keywords:["program questions","contact","we-engage"], answer:`For program-related questions not tied to access or data, contact the Grow team or weEngage project team. (<a class="underline" href="mailto:we-engage@straumann.com">we-engage@straumann.com</a>)` },
     ];
 
-    // Suggested questions (pulled from real content)
+    // Suggested questions
     const SUGGESTED = [
       "What is the WeEngage survey for?",
       "What is the response deadline for 2025?",
       "Who responds to the survey?",
-      "Is the survey confidential?",
+      "How is Culture defined in Straumann Group?",
       "How can employees without e-mail access the survey?",
       "How can I encourage participation?",
       "Access to Results (HRBPs)",
     ];
 
-    // ---------- UI WIRING ----------
+    // ---------- UI refs ----------
     const el = {
       chat: document.getElementById("chatMessages"),
       form: document.getElementById("chatForm"),
@@ -487,10 +203,9 @@ From an employee’s perspective, being part of STMN Group means belonging to a 
       brandSubtitle: document.getElementById("brandSubtitle"),
       brandBadge: document.getElementById("brandBadge"),
       botAvatar: document.getElementById("botAvatar"),
-      darkToggle: document.getElementById("darkToggle"),
     };
 
-    // Apply branding
+    // Branding
     function applyBranding() {
       el.brandTitle.textContent = `WeEngage Assistant`;
       el.brandSubtitle.textContent = CONFIG.subtitle;
@@ -498,20 +213,7 @@ From an employee’s perspective, being part of STMN Group means belonging to a 
     }
     applyBranding();
 
-    // Dark mode toggle
-    const DARK_KEY = "faq_dark_mode";
-    (function restoreDark() {
-      const pref = localStorage.getItem(DARK_KEY);
-      if (pref === "true" || (pref === null && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        document.documentElement.classList.add("dark");
-      }
-    })();
-    el.darkToggle?.addEventListener("click", () => {
-      document.documentElement.classList.toggle("dark");
-      localStorage.setItem(DARK_KEY, document.documentElement.classList.contains("dark"));
-    });
-
-    // Render suggested questions
+    // Suggested questions
     (function renderSuggested() {
       el.suggested.innerHTML = "";
       SUGGESTED.forEach(q => {
@@ -550,7 +252,7 @@ From an employee’s perspective, being part of STMN Group means belonging to a 
     }
     renderRecent();
 
-    // ---------- CHAT RENDER ----------
+    // Chat rendering
     function addMessage(content, opts = { role: "bot" }) {
       const wrap = document.createElement("div");
       wrap.className = "chat-message flex items-start space-x-3";
@@ -605,7 +307,7 @@ From an employee’s perspective, being part of STMN Group means belonging to a 
       if (t) t.remove();
     }
 
-    // ---------- SEARCH / MATCHING ----------
+    // Search / matching
     const norm = s => s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
     const INDEX = FAQ_DATA.map((item, id) => ({
       id,
@@ -647,7 +349,7 @@ From an employee’s perspective, being part of STMN Group means belonging to a 
       return out;
     }
 
-    // ---------- BEHAVIOR ----------
+    // Behavior
     let lastCategory = null;
 
     function answerQuestion(question) {
@@ -674,14 +376,17 @@ From an employee’s perspective, being part of STMN Group means belonging to a 
       return html;
     }
 
-    // ---------- EVENT HANDLERS ----------
-    el.form.addEventListener("submit", (e) => {
+    // Events
+    const form = document.getElementById("chatForm");
+    const input = document.getElementById("messageInput");
+
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const q = el.input.value.trim();
+      const q = input.value.trim();
       if (!q) return;
       addMessage(q.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c])), { role: "user" });
-      el.input.value = "";
-      el.input.focus();
+      input.value = "";
+      input.focus();
       addRecent(q);
       showTyping();
       setTimeout(() => {
@@ -692,8 +397,8 @@ From an employee’s perspective, being part of STMN Group means belonging to a 
     });
 
     function askQuestion(q) {
-      el.input.value = q;
-      el.form.dispatchEvent(new Event("submit"));
+      input.value = q;
+      form.dispatchEvent(new Event("submit"));
     }
     window.askQuestion = askQuestion;
 
@@ -706,7 +411,7 @@ From an employee’s perspective, being part of STMN Group means belonging to a 
         production: "Production Site: ask about QR access, time allocation, confidentiality, and devices.",
       }[cat] || `You selected ${cat}. What would you like to know?`;
       addMessage(msg);
-      el.input.focus();
+      input.focus();
     }
     window.selectCategory = selectCategory;
 
