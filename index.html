@@ -1,267 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intranet FAQ Bot</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            box-sizing: border-box;
-        }
-        
-        .chat-message {
-            animation: slideIn 0.3s ease-out;
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .typing-indicator {
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Intranet FAQ Bot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root { --ring: 59 130 246; }
+    .chat-message { animation: slideIn .25s ease-out; }
+    @keyframes slideIn { from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)} }
+    .typing-indicator { animation: pulse 1.4s infinite; }
+    @keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+    mark { padding: 0 .15rem; border-radius: .25rem; }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-full">
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <!-- Header -->
-        <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-            </div>
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">FAQ Assistant</h1>
-            <p class="text-gray-600">Get instant answers to your workplace questions</p>
+<body class="min-h-full bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-950">
+  <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <div id="brandBadge" class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 bg-blue-600">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+      <h1 id="brandTitle" class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">FAQ Assistant</h1>
+      <p id="brandSubtitle" class="text-gray-600 dark:text-gray-300">Get instant answers to your workplace questions</p>
+
+      <div class="mt-4 flex items-center justify-center gap-2">
+        <button id="darkToggle" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700">
+          Toggle dark mode
+        </button>
+      </div>
+    </header>
+
+    <!-- Quick Categories -->
+    <section class="mb-6">
+      <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-3">Popular Topics</h2>
+      <div id="categoryButtons" class="flex flex-wrap gap-2">
+        <button onclick="selectCategory('employees')" class="px-4 py-2 bg-white dark:bg-slate-900 rounded-full text-sm font-medium text-gray-700 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors border border-gray-200 dark:border-gray-700">
+          👩‍💼 Employees
+        </button>
+        <button onclick="selectCategory('managers')" class="px-4 py-2 bg-white dark:bg-slate-900 rounded-full text-sm font-medium text-gray-700 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors border border-gray-200 dark:border-gray-700">
+          👨‍💼 Managers
+        </button>
+        <button onclick="selectCategory('hrbps')" class="px-4 py-2 bg-white dark:bg-slate-900 rounded-full text-sm font-medium text-gray-700 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors border border-gray-200 dark:border-gray-700">
+          🧩 HRBPs
+        </button>
+        <button onclick="selectCategory('production')" class="px-4 py-2 bg-white dark:bg-slate-900 rounded-full text-sm font-medium text-gray-700 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors border border-gray-200 dark:border-gray-700">
+          🏭 Production Site
+        </button>
+      </div>
+    </section>
+
+    <!-- Chat Interface -->
+    <section aria-label="FAQ chat" class="bg-white dark:bg-slate-900 rounded-lg shadow-lg overflow-hidden">
+      <!-- Chat Messages -->
+      <div id="chatMessages" class="h-96 overflow-y-auto p-6 space-y-4" aria-live="polite">
+        <div class="chat-message flex items-start space-x-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white" id="botAvatar" style="background:#2563eb">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <div class="bg-gray-100 dark:bg-slate-800 rounded-lg px-4 py-3 max-w-md">
+            <p class="text-gray-800 dark:text-gray-100">
+              Hi! I’m your FAQ assistant. Ask me anything by category—Employees, Managers, HRBPs, or Production Site—or type a question below.
+            </p>
+          </div>
         </div>
+      </div>
 
-        <!-- Quick Categories -->
-        <div class="mb-6">
-            <h2 class="text-lg font-semibold text-gray-700 mb-3">Popular Topics</h2>
-            <div class="flex flex-wrap gap-2">
-                <button onclick="selectCategory('hr')" class="px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors border border-gray-200">
-                    👥 HR & Benefits
-                </button>
-                <button onclick="selectCategory('it')" class="px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors border border-gray-200">
-                    💻 IT Support
-                </button>
-                <button onclick="selectCategory('policies')" class="px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors border border-gray-200">
-                    📋 Policies
-                </button>
-                <button onclick="selectCategory('facilities')" class="px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors border border-gray-200">
-                    🏢 Facilities
-                </button>
-            </div>
+      <!-- Input Area -->
+      <div class="border-t border-gray-200 dark:border-gray-800 p-4">
+        <form id="chatForm" class="flex gap-3" autocomplete="off">
+          <label for="messageInput" class="sr-only">Your question</label>
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="Ask your question here…"
+            class="flex-1 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--ring))] focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100"
+            aria-label="Ask a question"
+          />
+          <button
+            type="submit"
+            class="px-5 py-2 rounded-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--ring))]"
+          >
+            Send
+          </button>
+        </form>
+        <div id="recentQ" class="mt-3 flex flex-wrap gap-2"></div>
+      </div>
+    </section>
+
+    <!-- Suggested Questions -->
+    <section class="mt-6">
+      <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-3">Frequently Asked Questions</h3>
+      <div id="suggested" class="grid md:grid-cols-2 gap-3"></div>
+    </section>
+  </div>
+
+  <script>
+    // ---------- PERSONALIZATION LAYER ----------
+    const CONFIG = {
+      companyName: "Your Company",
+      subtitle: "Get instant answers to your workplace questions",
+      primaryBg: "bg-blue-600",
+      primaryRing: "59 130 246",
+      contacts: {
+        hr: "hr@company.com",
+        it: "it-helpdesk@company.com",
+        hrExt: "4200",
+        itExt: "4357",
+      },
+    };
+
+    // New categories
+    const CATEGORY_ORDER = ["employees", "managers", "hrbps", "production"];
+    const CATEGORY_LABELS = {
+      employees: "Employees",
+      managers: "Managers",
+      hrbps: "HRBPs",
+      production: "Production Site",
+    };
+
+    // Example FAQs (you’ll replace these with your Word-file content later)
+    const FAQ_DATA = [
+      // Employees
+      {
+        category: "employees",
+        title: "Vacation policy",
+        keywords: ["vacation", "holiday", "annual leave", "pto", "time off"],
+        answer:
+          "Employees receive 15 vacation days and 10 sick days annually. Request vacation at least 2 weeks in advance via the HR portal.",
+      },
+      {
+        category: "employees",
+        title: "Where can I find my pay stubs?",
+        keywords: ["pay stub", "payslip", "salary slip", "payroll"],
+        answer:
+          "Pay stubs are available in the employee self-service portal. Sign in with your employee ID and password.",
+      },
+      {
+        category: "employees",
+        title: "Wi-Fi access",
+        keywords: ["wifi", "wi-fi", "wireless", "network"],
+        answer:
+          "Guest Wi-Fi password: <code>CompanyGuest2024</code>. For secure access, sign in with your normal credentials.",
+      },
+
+      // Managers
+      {
+        category: "managers",
+        title: "Approving time off",
+        keywords: ["approve leave", "vacation approval", "manager approval"],
+        answer:
+          "Managers can approve or decline time off requests in the HR portal under Approvals → Time Off. Please review coverage before approving.",
+      },
+      {
+        category: "managers",
+        title: "Performance review timeline",
+        keywords: ["performance review", "appraisal", "mid-year", "end-year"],
+        answer:
+          "Mid-year reviews open in June and end-year reviews in November. Use the Performance module to share feedback and finalize ratings.",
+      },
+
+      // HRBPs
+      {
+        category: "hrbps",
+        title: "Policy clarifications",
+        keywords: ["policy", "clarification", "interpretation", "guidance"],
+        answer:
+          "For nuanced policy questions, consult the HR Knowledge Base first. For edge cases, escalate via the HRBP ticket form with context and references.",
+      },
+      {
+        category: "hrbps",
+        title: "Employee relations process",
+        keywords: ["employee relations", "investigation", "grievance", "case"],
+        answer:
+          "Log ER cases in the confidential ER system. Capture a factual summary, documents, and witnesses. Follow the ER checklist for timelines.",
+      },
+
+      // Production Site
+      {
+        category: "production",
+        title: "Shift policy and swaps",
+        keywords: ["shift", "rota", "roster", "swap", "schedule"],
+        answer:
+          "Shift swaps require supervisor approval and must be recorded 24h in advance. Check the rota board or scheduling app for updates.",
+      },
+      {
+        category: "production",
+        title: "Safety & PPE",
+        keywords: ["safety", "ppe", "protective equipment", "incident"],
+        answer:
+          "PPE is mandatory in designated areas. Report incidents immediately to your line lead and record them in the safety app within 24h.",
+      },
+    ];
+
+    // Suggested questions aligned to the new sections
+    const SUGGESTED = [
+      "How do I request vacation?",
+      "Where do I approve my team’s time off?",
+      "When are performance reviews due?",
+      "How do I handle an ER case?",
+      "What’s the shift swap process?",
+      "What PPE is required on site?",
+    ];
+
+    // ---------- UI WIRING ----------
+    const el = {
+      chat: document.getElementById("chatMessages"),
+      form: document.getElementById("chatForm"),
+      input: document.getElementById("messageInput"),
+      suggested: document.getElementById("suggested"),
+      categoryButtons: document.getElementById("categoryButtons"),
+      recentQ: document.getElementById("recentQ"),
+      brandTitle: document.getElementById("brandTitle"),
+      brandSubtitle: document.getElementById("brandSubtitle"),
+      brandBadge: document.getElementById("brandBadge"),
+      botAvatar: document.getElementById("botAvatar"),
+      darkToggle: document.getElementById("darkToggle"),
+    };
+
+    // Apply branding
+    function applyBranding() {
+      el.brandTitle.textContent = `${CONFIG.companyName} FAQ Assistant`;
+      el.brandSubtitle.textContent = CONFIG.subtitle;
+      el.brandBadge.classList.remove("bg-blue-600");
+      el.botAvatar.classList.remove("bg-blue-600");
+      el.brandBadge.classList.add(CONFIG.primaryBg);
+      el.botAvatar.classList.add(CONFIG.primaryBg);
+      document.documentElement.style.setProperty("--ring", CONFIG.primaryRing);
+    }
+    applyBranding();
+
+    // Dark mode toggle (persisted)
+    const DARK_KEY = "faq_dark_mode";
+    function restoreDark() {
+      const pref = localStorage.getItem(DARK_KEY);
+      if (pref === "true" || (pref === null && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.classList.add("dark");
+      }
+    }
+    restoreDark();
+    el.darkToggle.addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+      localStorage.setItem(DARK_KEY, document.documentElement.classList.contains("dark"));
+    });
+
+    // Render suggested questions
+    function renderSuggested() {
+      el.suggested.innerHTML = "";
+      SUGGESTED.forEach(q => {
+        const btn = document.createElement("button");
+        btn.className = "text-left p-3 bg-white dark:bg-slate-900 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors border border-gray-200 dark:border-gray-700";
+        btn.innerHTML = `<span class="text-blue-600 font-medium">${q}</span>`;
+        btn.addEventListener("click", () => askQuestion(q));
+        el.suggested.appendChild(btn);
+      });
+    }
+    renderSuggested();
+
+    // Recent questions (persisted)
+    const RECENT_KEY = "faq_recent_q";
+    function addRecent(q) {
+      const list = getRecent();
+      if (q.trim().length < 3) return;
+      if (list[0] === q) return;
+      const next = [q, ...list.filter(x => x !== q)].slice(0, 6);
+      localStorage.setItem(RECENT_KEY, JSON.stringify(next));
+      renderRecent();
+    }
+    function getRecent() {
+      try { return JSON.parse(localStorage.getItem(RECENT_KEY) || "[]"); } catch { return []; }
+    }
+    function renderRecent() {
+      const rec = getRecent();
+      el.recentQ.innerHTML = "";
+      rec.forEach(q => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "text-xs md:text-sm px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-slate-800";
+        b.textContent = q;
+        b.addEventListener("click", () => askQuestion(q));
+        el.recentQ.appendChild(b);
+      });
+    }
+    renderRecent();
+
+    // ---------- CHAT UX ----------
+    function addMessage(content, opts = { role: "bot" }) {
+      const wrap = document.createElement("div");
+      wrap.className = "chat-message flex items-start space-x-3";
+      if (opts.role === "user") {
+        wrap.innerHTML = `
+          <div class="flex-1"></div>
+          <div class="rounded-lg px-4 py-3 max-w-md text-white ${CONFIG.primaryBg}">
+            <p>${content}</p>
+          </div>
+          <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </div>
+        `;
+      } else {
+        wrap.innerHTML = `
+          <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white ${CONFIG.primaryBg}" aria-hidden="true">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <div class="bg-gray-100 dark:bg-slate-800 rounded-lg px-4 py-3 max-w-md">
+            <p class="text-gray-800 dark:text-gray-100">${content}</p>
+          </div>
+        `;
+      }
+      el.chat.appendChild(wrap);
+      el.chat.scrollTop = el.chat.scrollHeight;
+      return wrap;
+    }
+
+    function showTyping() {
+      const typing = document.createElement("div");
+      typing.id = "typing";
+      typing.className = "flex items-start space-x-3";
+      typing.innerHTML = `
+        <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white ${CONFIG.primaryBg}" aria-hidden="true">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+          </svg>
         </div>
-
-        <!-- Chat Interface -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <!-- Chat Messages -->
-            <div id="chatMessages" class="h-96 overflow-y-auto p-6 space-y-4">
-                <div class="chat-message flex items-start space-x-3">
-                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                        </svg>
-                    </div>
-                    <div class="bg-gray-100 rounded-lg px-4 py-3 max-w-md">
-                        <p class="text-gray-800">Hi! I'm your FAQ assistant. Ask me anything about company policies, IT support, HR benefits, or facilities. You can also click on the topic buttons above!</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Input Area -->
-            <div class="border-t border-gray-200 p-4">
-                <form onsubmit="sendMessage(event)" class="flex space-x-3">
-                    <input 
-                        type="text" 
-                        id="messageInput" 
-                        placeholder="Ask your question here..." 
-                        class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        autocomplete="off"
-                    >
-                    <button 
-                        type="submit" 
-                        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-                    >
-                        Send
-                    </button>
-                </form>
-            </div>
+        <div class="bg-gray-100 dark:bg-slate-800 rounded-lg px-4 py-3">
+          <div class="typing-indicator text-gray-500 dark:text-gray-300">Thinking…</div>
         </div>
+      `;
+      el.chat.appendChild(typing);
+      el.chat.scrollTop = el.chat.scrollHeight;
+    }
+    function removeTyping() {
+      const t = document.getElementById("typing");
+      if (t) t.remove();
+    }
 
-        <!-- Suggested Questions -->
-        <div class="mt-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-3">Frequently Asked Questions</h3>
-            <div class="grid md:grid-cols-2 gap-3">
-                <button onclick="askQuestion('How do I reset my password?')" class="text-left p-3 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-gray-200">
-                    <span class="text-blue-600 font-medium">How do I reset my password?</span>
-                </button>
-                <button onclick="askQuestion('What are the vacation policies?')" class="text-left p-3 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-gray-200">
-                    <span class="text-blue-600 font-medium">What are the vacation policies?</span>
-                </button>
-                <button onclick="askQuestion('How do I book a meeting room?')" class="text-left p-3 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-gray-200">
-                    <span class="text-blue-600 font-medium">How do I book a meeting room?</span>
-                </button>
-                <button onclick="askQuestion('Where can I find my pay stubs?')" class="text-left p-3 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-gray-200">
-                    <span class="text-blue-600 font-medium">Where can I find my pay stubs?</span>
-                </button>
-            </div>
-        </div>
-    </div>
+    // ---------- SEARCH / MATCHING ----------
+    const norm = s => s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
+    const INDEX = FAQ_DATA.map((item, id) => ({
+      id,
+      category: item.category, // 'employees' | 'managers' | 'hrbps' | 'production'
+      title: item.title,
+      answer: item.answer,
+      keywords: item.keywords.map(norm),
+    }));
 
-    <script>
-        const faqData = {
-            hr: {
-                'vacation': 'You get 15 vacation days per year, plus 10 sick days. Vacation requests should be submitted at least 2 weeks in advance through the HR portal.',
-                'benefits': 'We offer comprehensive health insurance, dental, vision, 401k with company match, and flexible spending accounts. Check the employee handbook for full details.',
-                'pay stubs': 'Pay stubs are available in the employee self-service portal. Log in with your employee ID and password to access them.',
-                'time off': 'Submit time off requests through the HR portal or speak with your manager. Emergency time off should be reported as soon as possible.'
-            },
-            it: {
-                'password': 'To reset your password, go to the IT self-service portal or call the help desk at ext. 4357. You\'ll need your employee ID for verification.',
-                'wifi': 'The guest WiFi password is "CompanyGuest2024". For secure network access, use your regular login credentials.',
-                'software': 'Software installation requests must go through IT. Submit a ticket through the IT portal with your business justification.',
-                'email': 'Email issues can usually be resolved by restarting Outlook. If problems persist, contact IT support at ext. 4357.'
-            },
-            policies: {
-                'dress code': 'Business casual is the standard. Jeans are allowed on Fridays. Avoid shorts, flip-flops, and overly casual attire.',
-                'remote work': 'Remote work is available 2 days per week with manager approval. Full remote arrangements require HR approval.',
-                'expenses': 'Submit expense reports within 30 days with receipts. Use the expense management system for all business-related costs.',
-                'harassment': 'Report any harassment immediately to HR or use the anonymous hotline at 1-800-ETHICS-1.'
-            },
-            facilities: {
-                'parking': 'Employee parking is available in the north lot. Visitor parking is in the south lot. Parking passes are required.',
-                'meeting rooms': 'Book meeting rooms through the facilities portal or Outlook calendar. Rooms are available 7 AM - 7 PM.',
-                'cafeteria': 'The cafeteria is open 7 AM - 3 PM. Lunch is served 11:30 AM - 2 PM. Vending machines are available 24/7.',
-                'security': 'Building access requires your badge. Lost badges should be reported to security immediately at ext. 4911.'
-            }
-        };
+    function tokenize(q) {
+      return norm(q).split(/[^a-z0-9+]+/).filter(Boolean);
+    }
 
-        function addMessage(content, isUser = false) {
-            const chatMessages = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'chat-message flex items-start space-x-3';
-            
-            if (isUser) {
-                messageDiv.innerHTML = `
-                    <div class="flex-1"></div>
-                    <div class="bg-blue-600 text-white rounded-lg px-4 py-3 max-w-md">
-                        <p>${content}</p>
-                    </div>
-                    <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
-                    </div>
-                `;
-            } else {
-                messageDiv.innerHTML = `
-                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                        </svg>
-                    </div>
-                    <div class="bg-gray-100 rounded-lg px-4 py-3 max-w-md">
-                        <p class="text-gray-800">${content}</p>
-                    </div>
-                `;
-            }
-            
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+    function scoreEntry(tokens, entry, categoryFilter = null) {
+      const answerText = norm(entry.title + " " + entry.answer);
+      let score = 0;
+      for (const kw of entry.keywords) if (tokens.includes(kw)) score += 3;
+      for (const t of tokens) if (t.length >= 4 && answerText.includes(t)) score += 1;
+      if (categoryFilter && entry.category === categoryFilter) score += 2;
+      return score;
+    }
 
-        function showTyping() {
-            const chatMessages = document.getElementById('chatMessages');
-            const typingDiv = document.createElement('div');
-            typingDiv.id = 'typing';
-            typingDiv.className = 'flex items-start space-x-3';
-            typingDiv.innerHTML = `
-                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                    </svg>
-                </div>
-                <div class="bg-gray-100 rounded-lg px-4 py-3">
-                    <div class="typing-indicator text-gray-500">Thinking...</div>
-                </div>
-            `;
-            chatMessages.appendChild(typingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+    function findBestAnswers(question, categoryFilter = null) {
+      const tokens = tokenize(question);
+      const scored = INDEX
+        .map(e => ({ ...e, _score: scoreEntry(tokens, e, categoryFilter) }))
+        .filter(e => e._score > 0)
+        .sort((a, b) => b._score - a._score);
+      return scored.slice(0, 3);
+    }
 
-        function removeTyping() {
-            const typing = document.getElementById('typing');
-            if (typing) typing.remove();
-        }
+    function highlight(text, question) {
+      const terms = [...new Set(tokenize(question).filter(t => t.length >= 4))];
+      let out = text;
+      for (const t of terms) {
+        const re = new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+        out = out.replace(re, "<mark class='bg-yellow-200 dark:bg-yellow-600/40'>$1</mark>");
+      }
+      return out;
+    }
 
-        function findAnswer(question) {
-            const lowerQuestion = question.toLowerCase();
-            
-            // Search through all categories
-            for (const category in faqData) {
-                for (const keyword in faqData[category]) {
-                    if (lowerQuestion.includes(keyword)) {
-                        return faqData[category][keyword];
-                    }
-                }
-            }
-            
-            // Default response if no match found
-            return "I couldn't find a specific answer to that question. Please contact HR at ext. 4200 or IT support at ext. 4357 for further assistance. You can also check the employee handbook on the intranet.";
-        }
+    // ---------- BEHAVIOR ----------
+    let lastCategory = null;
 
-        function sendMessage(event) {
-            event.preventDefault();
-            const input = document.getElementById('messageInput');
-            const question = input.value.trim();
-            
-            if (!question) return;
-            
-            // Add user message
-            addMessage(question, true);
-            input.value = '';
-            
-            // Show typing indicator
-            showTyping();
-            
-            // Simulate processing delay
-            setTimeout(() => {
-                removeTyping();
-                const answer = findAnswer(question);
-                addMessage(answer);
-            }, 1000);
-        }
+    function answerQuestion(question) {
+      const hits = findBestAnswers(question, lastCategory);
+      if (hits.length === 0) {
+        const fallback =
+          `I couldn’t find a specific answer. For HR, email <a href="mailto:${CONFIG.contacts.hr}" class="underline">${CONFIG.contacts.hr}</a> (ext. ${CONFIG.contacts.hrExt}). ` +
+          `For IT, email <a href="mailto:${CONFIG.contacts.it}" class="underline">${CONFIG.contacts.it}</a> (ext. ${CONFIG.contacts.itExt}). ` +
+          `You can also check the employee handbook on the intranet.`;
+        return fallback;
+      }
+      const best = hits[0];
+      let html = `<div class="space-y-3">
+        <div>
+          <div class="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400">${CATEGORY_LABELS[best.category] || best.category}</div>
+          <div class="font-semibold text-gray-900 dark:text-gray-100">${best.title}</div>
+          <div class="prose prose-sm dark:prose-invert max-w-none mt-1">${highlight(best.answer, question)}</div>
+        </div>`;
+      if (hits.length > 1) {
+        html += `<div class="pt-2 border-t border-gray-200 dark:border-gray-800">
+          <div class="text-sm text-gray-600 dark:text-gray-300 mb-1">Related:</div>
+          <ul class="list-disc list-inside space-y-1 text-sm">` +
+          hits.slice(1).map(h => `<li><button class="underline text-blue-600 hover:text-blue-700" onclick="askQuestion('${h.title}')">${h.title}</button></li>`).join("") +
+          `</ul>
+        </div>`;
+      }
+      html += `</div>`;
+      return html;
+    }
 
-        function askQuestion(question) {
-            document.getElementById('messageInput').value = question;
-            sendMessage(new Event('submit'));
-        }
+    // ---------- EVENT HANDLERS ----------
+    el.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const q = el.input.value.trim();
+      if (!q) return;
+      addMessage(escapeHTML(q), { role: "user" });
+      el.input.value = "";
+      el.input.focus();
+      addRecent(q);
+      showTyping();
+      setTimeout(() => {
+        removeTyping();
+        const html = answerQuestion(q);
+        addMessage(html, { role: "bot" });
+      }, 450);
+    });
 
-        function selectCategory(category) {
-            const categoryMessages = {
-                hr: "I can help with HR questions like vacation policies, benefits, pay stubs, and time off requests. What would you like to know?",
-                it: "I'm here to help with IT issues like password resets, WiFi access, software requests, and email problems. What do you need help with?",
-                policies: "I can answer questions about company policies including dress code, remote work, expenses, and reporting procedures. What policy would you like to know about?",
-                facilities: "I can help with facilities questions like parking, meeting room bookings, cafeteria hours, and building security. What do you need to know?"
-            };
-            
-            addMessage(categoryMessages[category]);
-        }
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'993ad5db30c39bbc',t:'MTc2MTMyMzE4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    function askQuestion(q) {
+      el.input.value = q;
+      el.form.dispatchEvent(new Event("submit"));
+    }
+    window.askQuestion = askQuestion;
+
+    function selectCategory(cat) {
+      lastCategory = cat; // 'employees' | 'managers' | 'hrbps' | 'production'
+      const categoryMessages = {
+        employees: "I can help employees with benefits, policies, leave, workplace resources, and more. What would you like to know?",
+        managers: "I assist managers with approvals, team processes, performance cycles, and leadership resources. What do you need help with?",
+        hrbps: "I support HRBPs with HR processes, policy clarifications, and employee relations. What are you looking for?",
+        production: "I help production site colleagues with safety, shifts, and facility topics. What do you need?",
+      };
+      addMessage(escapeHTML(categoryMessages[cat] || `You selected ${CATEGORY_LABELS[cat] || cat}. What would you like to know?`));
+      el.input.focus();
+    }
+    window.selectCategory = selectCategory;
+
+    // ---------- UTILS ----------
+    function escapeHTML(s) {
+      return s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
+    }
+  </script>
+</body>
 </html>
