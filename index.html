@@ -103,19 +103,19 @@
   <script>
     // ---------- PERSONALIZATION LAYER ----------
     const CONFIG = {
-      companyName: "Your Company",
+      companyName: "Straumann Group",
       subtitle: "Get instant answers to your workplace questions",
       primaryBg: "bg-blue-600",
       primaryRing: "59 130 246",
       contacts: {
-        hr: "hr@company.com",
-        it: "it-helpdesk@company.com",
-        hrExt: "4200",
-        itExt: "4357",
+        hr: "we-engage@straumann.com",   // program mailbox surfaced in FAQs
+        it: "it-helpdesk@straumann.com",
+        hrExt: "—",
+        itExt: "—",
       },
     };
 
-    // New categories
+    // Categories (new taxonomy)
     const CATEGORY_ORDER = ["employees", "managers", "hrbps", "production"];
     const CATEGORY_LABELS = {
       employees: "Employees",
@@ -124,88 +124,324 @@
       production: "Production Site",
     };
 
-    // Example FAQs (you’ll replace these with your Word-file content later)
+    // ---------- FAQ DATA (populated from your docs) ----------
+    // Notes:
+    // - Keep keywords short, lowercase, and include common synonyms for better matching.
+    // - Answers are concise summaries tailored for the bot UI.
+    // - You can safely edit the text below; structure must remain {category,title,keywords,answer}.
     const FAQ_DATA = [
-      // Employees
+      /* ===================== EMPLOYEES ===================== */
       {
         category: "employees",
-        title: "Vacation policy",
-        keywords: ["vacation", "holiday", "annual leave", "pto", "time off"],
+        title: "What is the purpose of the WeEngage survey?",
+        keywords: ["purpose", "what is", "weengage", "engagement"],
         answer:
-          "Employees receive 15 vacation days and 10 sick days annually. Request vacation at least 2 weeks in advance via the HR portal.",
+          "WeEngage listens to employees and provides insights on how we lead, collaborate, and nurture culture—helping identify strengths and improvements for our shared well-being. (2025 cycle)", // Employees guide
       },
       {
         category: "employees",
-        title: "Where can I find my pay stubs?",
-        keywords: ["pay stub", "payslip", "salary slip", "payroll"],
+        title: "When is the 2025 survey open?",
+        keywords: ["deadline", "dates", "when", "open", "close"],
         answer:
-          "Pay stubs are available in the employee self-service portal. Sign in with your employee ID and password.",
+          "For 2025, the survey runs from <strong>Nov 3</strong> to <strong>Nov 17</strong>.", // Employees guide
       },
       {
         category: "employees",
-        title: "Wi-Fi access",
-        keywords: ["wifi", "wi-fi", "wireless", "network"],
+        title: "What period should I consider when answering?",
+        keywords: ["period", "timeframe", "reference", "window"],
         answer:
-          "Guest Wi-Fi password: <code>CompanyGuest2024</code>. For secure access, sign in with your normal credentials.",
+          "Please consider your experience from <strong>Nov 2024</strong> up to the present.", // Employees guide
+      },
+      {
+        category: "employees",
+        title: "Who is invited to respond?",
+        keywords: ["who responds", "eligibility", "invite", "target"],
+        answer:
+          "All employees (incl. interns) can respond—even if on maternity leave, vacation, or long-term sick leave. External/contingent workers or those with employment status changes are not eligible.",
+      },
+      {
+        category: "employees",
+        title: "What does “engagement” mean?",
+        keywords: ["engagement", "definition", "think feel act"],
+        answer:
+          "Engagement reflects how people <em>think</em>, <em>feel</em>, and <em>act</em>—a sense of belonging, purpose, and energy that connects us to work, colleagues, and mission.",
+      },
+      {
+        category: "employees",
+        title: "Is the survey confidential?",
+        keywords: ["confidential", "anonymous", "privacy"],
+        answer:
+          "Yes—responses are confidential and reported in aggregated form via Viva Glint. Individual responses are not identifiable in reporting; minimum thresholds apply.",
+      },
+      {
+        category: "employees",
+        title: "Who can see the results?",
+        keywords: ["access results", "who sees", "visibility"],
+        answer:
+          "Managers see their own team’s aggregated results (only if ≥5 responses). HRBPs and Grow & Culture have broader access; comments are shown only if ≥10 responses.",
+      },
+      {
+        category: "employees",
+        title: "What happens after results are published?",
+        keywords: ["after results", "actions", "follow up"],
+        answer:
+          "Results are shared with managers and employees. Actions may include 1:1s, feedback, team sessions, training, process improvements, and comms enhancements.",
+      },
+      {
+        category: "employees",
+        title: "Who do “my manager”, “my team”, and “customers” refer to?",
+        keywords: ["definitions", "manager", "team", "customers"],
+        answer:
+          "<strong>My manager:</strong> your direct line manager. <strong>My team:</strong> peers with the same manager. <strong>Customers:</strong> include internal customers you support.",
+      },
+      {
+        category: "employees",
+        title: "I recently changed area—how should I answer?",
+        keywords: ["changed area", "transfer", "new role"],
+        answer:
+          "Answer based on your current line manager and peers and your experience to date—even if the time has been short.",
+      },
+      {
+        category: "employees",
+        title: "Will I still be included if I’m leaving mid-November?",
+        keywords: ["leaving", "notice", "resignation"],
+        answer:
+          "Yes. All employees as of the survey start date (excluding externals) are eligible to participate.",
+      },
+      {
+        category: "employees",
+        title: "I don’t have corporate e-mail—how do I access?",
+        keywords: ["no email", "access", "qr", "card", "u-number"],
+        answer:
+          "Use the QR code on posters or a printed card from your manager. Log in with your <strong>U-number</strong> and <strong>date of birth (YYYY-MM-DD)</strong>.",
+      },
+      {
+        category: "employees",
+        title: "Can I retake the survey to change answers?",
+        keywords: ["redo", "retake", "edit", "change"],
+        answer:
+          "Yes—while the survey is open you may resubmit. Each time you must answer all questions; only the latest submission counts.",
+      },
+      {
+        category: "employees",
+        title: "I’m on leave—can I answer?",
+        keywords: ["vacation", "maternity", "sick leave"],
+        answer:
+          "Yes. If you have email, use your link; otherwise use the QR method with U-number and birth date.",
+      },
+      {
+        category: "employees",
+        title: "Can links be accessed from non-STM domains?",
+        keywords: ["external email", "domain", "access"],
+        answer:
+          "No—access is via corporate email. Employees without email should use the QR flow (U-number + birth date).",
+      },
+      {
+        category: "employees",
+        title: "I deleted the Viva Glint link—can a colleague forward theirs?",
+        keywords: ["lost link", "forward", "email"],
+        answer:
+          "No—links are personal. Viva Glint sends reminders. If still missing, contact your local HRBP for help.",
       },
 
-      // Managers
+      /* ===================== MANAGERS ===================== */
       {
         category: "managers",
-        title: "Approving time off",
-        keywords: ["approve leave", "vacation approval", "manager approval"],
+        title: "What happens after results are shared?",
+        keywords: ["after", "actions", "review"],
         answer:
-          "Managers can approve or decline time off requests in the HR portal under Approvals → Time Off. Please review coverage before approving.",
+          "Review results with your HRBP and Grow & Culture. Align on context, strengths, gaps, and actions (e.g., workshops, feedback, training).",
       },
       {
         category: "managers",
-        title: "Performance review timeline",
-        keywords: ["performance review", "appraisal", "mid-year", "end-year"],
+        title: "I’m new—who evaluates me?",
+        keywords: ["new manager", "evaluate", "who"],
         answer:
-          "Mid-year reviews open in June and end-year reviews in November. Use the Performance module to share feedback and finalize ratings.",
+          "Your current team evaluates you, even if you’ve joined recently.",
+      },
+      {
+        category: "managers",
+        title: "Who has access to results?",
+        keywords: ["visibility", "access"],
+        answer:
+          "Managers see their team results. HRBPs and Grow & Culture have broader visibility.",
+      },
+      {
+        category: "managers",
+        title: "How do I support employees without corporate email?",
+        keywords: ["no email", "support", "access"],
+        answer:
+          "Provide printed cards and explain the QR access process. If issues persist, contact <a class='underline' href='mailto:we-engage@straumann.com'>we-engage@straumann.com</a>.",
+      },
+      {
+        category: "managers",
+        title: "How can I encourage participation?",
+        keywords: ["participation", "remind", "engage"],
+        answer:
+          "Discuss the survey in team meetings (10–15 mins), reassure confidentiality, provide time to respond, and highlight actions taken since last year.",
+      },
+      {
+        category: "managers",
+        title: "Team has uncertainty after recent news—what should I do?",
+        keywords: ["uncertainty", "news", "concern", "psychological safety"],
+        answer:
+          "Host a timely, open session to explain context and take questions. Be clear and honest; invite HRBP/GM if useful. Foster psychological safety and address concerns directly.",
+      },
+      {
+        category: "managers",
+        title: "I don’t know how to read my report—help?",
+        keywords: ["analyze report", "how to", "support"],
+        answer:
+          "Your HRBP and Global weEngage team can support. Check weLearn trainings on the Survey & Reports.",
+      },
+      {
+        category: "managers",
+        title: "What actions can managers take based on results?",
+        keywords: ["actions", "follow up", "plan"],
+        answer:
+          "Examples: team offsites, 1:1s, feedback talks, trainings, and engagement activities. Co-create actions with the team.",
+      },
+      {
+        category: "managers",
+        title: "Production site time allocation for survey?",
+        keywords: ["production", "time", "shift"],
+        answer:
+          "Encourage participation by scheduling small groups (15–20 min) during shifts and leveraging QR, kiosks, or shared workstations.",
       },
 
-      // HRBPs
+      /* ===================== HRBPs ===================== */
       {
         category: "hrbps",
-        title: "Policy clarifications",
-        keywords: ["policy", "clarification", "interpretation", "guidance"],
+        title: "Scope and target audience",
+        keywords: ["scope", "target", "who responds"],
         answer:
-          "For nuanced policy questions, consult the HR Knowledge Base first. For edge cases, escalate via the HRBP ticket form with context and references.",
+          "All employees (incl. interns) are invited. Externals/contingent workers and status-change populations are excluded. QR access is available for those without email.",
       },
       {
         category: "hrbps",
-        title: "Employee relations process",
-        keywords: ["employee relations", "investigation", "grievance", "case"],
+        title: "Access to results (HRBPs & Managers)",
+        keywords: ["access", "results", "visibility"],
         answer:
-          "Log ER cases in the confidential ER system. Capture a factual summary, documents, and witnesses. Follow the ER checklist for timelines.",
+          "HRBPs: access can be granted on request (e.g., by Legal Entity). Managers automatically see their team results via the EC roll-up structure.",
+      },
+      {
+        category: "hrbps",
+        title: "Distribution & missing invitations",
+        keywords: ["distribution", "invite", "missing", "resend"],
+        answer:
+          "All employees receive personal invitations. If missing, check spam; otherwise the HRBP may request a manual resend by contacting the program owner(s).",
+      },
+      {
+        category: "hrbps",
+        title: "Confidentiality thresholds",
+        keywords: ["threshold", "min respondents", "comments"],
+        answer:
+          "Managers see results only if ≥5 respondents; comments show only if ≥10, ensuring confidentiality.",
+      },
+      {
+        category: "hrbps",
+        title: "Critical EC data checks",
+        keywords: ["employee central", "data", "reporting lines", "org structure", "job architecture", "tenure", "dob", "username"],
+        answer:
+          "Validate reporting lines, org structure, job architecture, tenure, date of birth, and username availability in EC—they drive visibility, segmentation, and accurate reporting.",
+      },
+      {
+        category: "hrbps",
+        title: "Employees with external managers",
+        keywords: ["external managers", "roll-up", "hierarchy"],
+        answer:
+          "If a direct manager is an external (not in Glint), the manager hierarchy breaks. Results still roll up in analysis, but not to that external manager.",
+      },
+      {
+        category: "hrbps",
+        title: "Employees without e-mail in EC",
+        keywords: ["no email", "qr", "u-number", "dob"],
+        answer:
+          "They can use QR and log in with U-number and date of birth (YYYY-MM-DD).",
+      },
+      {
+        category: "hrbps",
+        title: "Support & access provisioning",
+        keywords: ["support", "access", "provisioning", "contacts"],
+        answer:
+          "HRBPs needing system access should have the Grow Head request it with the program owners, specifying the target population (e.g., Legal Entity). Escalate data/invite issues via standard channels.",
       },
 
-      // Production Site
+      /* ===================== PRODUCTION SITE ===================== */
       {
         category: "production",
-        title: "Shift policy and swaps",
-        keywords: ["shift", "rota", "roster", "swap", "schedule"],
+        title: "How can employees without e-mail access the survey?",
+        keywords: ["no email", "access", "qr", "card"],
         answer:
-          "Shift swaps require supervisor approval and must be recorded 24h in advance. Check the rota board or scheduling app for updates.",
+          "Use the QR on posters or HR flow; in some regions, managers distribute personal cards with QR and credentials (non-transferable).",
       },
       {
         category: "production",
-        title: "Safety & PPE",
-        keywords: ["safety", "ppe", "protective equipment", "incident"],
+        title: "Can I answer from a personal device?",
+        keywords: ["personal phone", "mobile", "device"],
         answer:
-          "PPE is mandatory in designated areas. Report incidents immediately to your line lead and record them in the safety app within 24h.",
+          "Yes—use the QR code or access link on any smartphone or smart device.",
+      },
+      {
+        category: "production",
+        title: "I lost my access card/QR—what now?",
+        keywords: ["lost", "card", "qr", "replacement"],
+        answer:
+          "Inform your manager, who will coordinate with HR to arrange a replacement or retrieve credentials.",
+      },
+      {
+        category: "production",
+        title: "Can we answer during working hours?",
+        keywords: ["work time", "shift", "allocation"],
+        answer:
+          "Yes—managers should allocate time so participation doesn’t impact shifts.",
+      },
+      {
+        category: "production",
+        title: "Is participation mandatory?",
+        keywords: ["mandatory", "voluntary", "participation"],
+        answer:
+          "Participation is voluntary but strongly encouraged to inform improvements.",
+      },
+      {
+        category: "production",
+        title: "Are production responses treated differently?",
+        keywords: ["production", "weight", "confidential"],
+        answer:
+          "No—responses are confidential and contribute equally to overall results.",
+      },
+      {
+        category: "production",
+        title: "Viva Glint confidentiality (production context)",
+        keywords: ["privacy", "glint", "confidentiality"],
+        answer:
+          "Microsoft Viva Glint safeguards confidentiality. Results are only shown in aggregated form with thresholds to prevent identifying individuals.",
+      },
+      {
+        category: "production",
+        title: "What does “Straumann Group” refer to in questions?",
+        keywords: ["organization", "what to consider"],
+        answer:
+          "Consider the global culture (I-We-It; Player & Learner mindset; core beliefs) applied consistently across sites—locally grounded, globally connected.",
+      },
+      {
+        category: "production",
+        title: "How should I think about Collaboration?",
+        keywords: ["collaboration", "teams", "functions"],
+        answer:
+          "Think about how you and colleagues work together within your team and across functions (Sales, Marketing, R&D, Operations, IT, Finance, HR, etc.).",
       },
     ];
 
-    // Suggested questions aligned to the new sections
+    // Suggested questions aligned to categories
     const SUGGESTED = [
-      "How do I request vacation?",
-      "Where do I approve my team’s time off?",
-      "When are performance reviews due?",
-      "How do I handle an ER case?",
-      "What’s the shift swap process?",
-      "What PPE is required on site?",
+      "When is the 2025 survey open?",
+      "Is the survey confidential?",
+      "Who can see results?",
+      "How do employees without email access the survey?",
+      "I’m a new manager—who evaluates me?",
+      "What EC data should HRBPs check?",
+      "How should production teams allocate time?",
     ];
 
     // ---------- UI WIRING ----------
@@ -393,9 +629,8 @@
       const hits = findBestAnswers(question, lastCategory);
       if (hits.length === 0) {
         const fallback =
-          `I couldn’t find a specific answer. For HR, email <a href="mailto:${CONFIG.contacts.hr}" class="underline">${CONFIG.contacts.hr}</a> (ext. ${CONFIG.contacts.hrExt}). ` +
-          `For IT, email <a href="mailto:${CONFIG.contacts.it}" class="underline">${CONFIG.contacts.it}</a> (ext. ${CONFIG.contacts.itExt}). ` +
-          `You can also check the employee handbook on the intranet.`;
+          `I couldn’t find a specific answer. For program questions, email <a href="mailto:${CONFIG.contacts.hr}" class="underline">${CONFIG.contacts.hr}</a>. ` +
+          `For IT access issues, email <a href="mailto:${CONFIG.contacts.it}" class="underline">${CONFIG.contacts.it}</a>.`;
         return fallback;
       }
       const best = hits[0];
@@ -409,7 +644,7 @@
         html += `<div class="pt-2 border-t border-gray-200 dark:border-gray-800">
           <div class="text-sm text-gray-600 dark:text-gray-300 mb-1">Related:</div>
           <ul class="list-disc list-inside space-y-1 text-sm">` +
-          hits.slice(1).map(h => `<li><button class="underline text-blue-600 hover:text-blue-700" onclick="askQuestion('${h.title}')">${h.title}</button></li>`).join("") +
+          hits.slice(1).map(h => `<li><button class="underline text-blue-600 hover:text-blue-700" onclick="askQuestion('${h.title.replace(/'/g, "\\'")}')">${h.title}</button></li>`).join("") +
           `</ul>
         </div>`;
       }
@@ -418,7 +653,8 @@
     }
 
     // ---------- EVENT HANDLERS ----------
-    el.form.addEventListener("submit", (e) => {
+    const elForm = document.getElementById("chatForm");
+    elForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const q = el.input.value.trim();
       if (!q) return;
@@ -443,15 +679,56 @@
     function selectCategory(cat) {
       lastCategory = cat; // 'employees' | 'managers' | 'hrbps' | 'production'
       const categoryMessages = {
-        employees: "I can help employees with benefits, policies, leave, workplace resources, and more. What would you like to know?",
-        managers: "I assist managers with approvals, team processes, performance cycles, and leadership resources. What do you need help with?",
-        hrbps: "I support HRBPs with HR processes, policy clarifications, and employee relations. What are you looking for?",
-        production: "I help production site colleagues with safety, shifts, and facility topics. What do you need?",
+        employees: "Employees: ask about eligibility, confidentiality, access, timeframe, and more.",
+        managers: "Managers: ask about reading reports, encouraging participation, and post-results actions.",
+        hrbps: "HRBPs: ask about access provisioning, EC data checks, thresholds, and distribution.",
+        production: "Production Site: ask about QR access, time allocation, confidentiality, and devices.",
       };
       addMessage(escapeHTML(categoryMessages[cat] || `You selected ${CATEGORY_LABELS[cat] || cat}. What would you like to know?`));
       el.input.focus();
     }
     window.selectCategory = selectCategory;
+
+    // ---------- SUGGESTED ----------
+    function renderSuggested() {
+      const container = document.getElementById("suggested");
+      container.innerHTML = "";
+      SUGGESTED.forEach(q => {
+        const btn = document.createElement("button");
+        btn.className = "text-left p-3 bg-white dark:bg-slate-900 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors border border-gray-200 dark:border-gray-700";
+        btn.innerHTML = `<span class="text-blue-600 font-medium">${q}</span>`;
+        btn.addEventListener("click", () => askQuestion(q));
+        container.appendChild(btn);
+      });
+    }
+    renderSuggested();
+
+    // ---------- RECENTS ----------
+    const RECENT_KEY = "faq_recent_q";
+    function addRecent(q) {
+      const list = getRecent();
+      if (q.trim().length < 3) return;
+      if (list[0] === q) return;
+      const next = [q, ...list.filter(x => x !== q)].slice(0, 6);
+      localStorage.setItem(RECENT_KEY, JSON.stringify(next));
+      renderRecent();
+    }
+    function getRecent() {
+      try { return JSON.parse(localStorage.getItem(RECENT_KEY) || "[]"); } catch { return []; }
+    }
+    function renderRecent() {
+      const rec = getRecent();
+      el.recentQ.innerHTML = "";
+      rec.forEach(q => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "text-xs md:text-sm px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-slate-800";
+        b.textContent = q;
+        b.addEventListener("click", () => askQuestion(q));
+        el.recentQ.appendChild(b);
+      });
+    }
+    renderRecent();
 
     // ---------- UTILS ----------
     function escapeHTML(s) {
